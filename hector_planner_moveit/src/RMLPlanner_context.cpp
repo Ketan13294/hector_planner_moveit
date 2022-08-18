@@ -42,6 +42,7 @@ RMLContext::~RMLContext(){}
 
 
 // TODO
+//function to decide to select the positions to add a nearby sample
 RMLContext::index RMLContext::select_config_from_tree( const std::vector<RMLContext::weight>& w )
 {
   RMLContext::index it;
@@ -84,6 +85,7 @@ RMLContext::index RMLContext::select_config_from_tree( const std::vector<RMLCont
 }
 
 // TODO
+// Create a random sample beside the selected state
 RMLContext::vertex RMLContext::sample_nearby( const RMLContext::vertex& q ){
   RMLContext::vertex q_rand(q.size(),0.0);
   double q_temp = 0;
@@ -131,6 +133,7 @@ RMLContext::vertex RMLContext::sample_nearby( const RMLContext::vertex& q ){
 }
 
 // TODO
+// Function to check is the path between two states is free of obstacles
 bool RMLContext::is_local_path_collision_free( const RMLContext::vertex& q,
 						 const RMLContext::vertex& q_rand ){
     // return true/false if the local path between q and q_rand is collision free
@@ -146,6 +149,7 @@ bool RMLContext::is_local_path_collision_free( const RMLContext::vertex& q,
   return true;
 }
 
+// Function to check if the goal to the selected state is obstacle free
 bool RMLContext::test_connection(const RMLContext::vertex& q,
                                       const RMLContext::vertex& q_goal,
                                       RMLContext::index& connection)
@@ -159,6 +163,7 @@ bool RMLContext::test_connection(const RMLContext::vertex& q,
   return false;
 }
 
+// Function to add the new generated state to the tree
 void RMLContext::add_new_branch_to_tree(const int& parent,
                                           RMLContext::vertex& weights,
                                           RMLContext::sym_vertex& V)
@@ -176,7 +181,7 @@ void RMLContext::add_new_branch_to_tree(const int& parent,
   }
 }
 
-
+// Function to search the path in the tree and return the path
 RMLContext::sym_vertex RMLContext::search_path( const RMLContext::sym_vertex& V,
  					      const index& idx_init,
 					      const index& idx_goal)
@@ -203,7 +208,7 @@ RMLContext::sym_vertex RMLContext::search_path( const RMLContext::sym_vertex& V,
   return P;
 }
 
-
+// Function which does the basic planner functions
 RMLContext::path RMLContext::est( const RMLContext::vertex& q_init,
  				      const RMLContext::vertex& q_goal ){
   
@@ -248,6 +253,7 @@ for(int i = f1.size()-1; i >= 0; --i)
     P.push_back(state_init[f1[i]]);
   }
   P.push_back(q_goal);
+  ROS_INFO("The path contains %d states.",(int)P.size())
 return P;
 }
 
