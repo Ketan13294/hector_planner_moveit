@@ -1,0 +1,10 @@
+controller_list:
+  - name: fake_hector_moveit_planner_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - virtual_joint
+initial:  # Define initial robot poses.
+#  - group: hector_moveit_planner
+#    pose: home
+
+  []
