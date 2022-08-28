@@ -253,7 +253,7 @@ for(int i = f1.size()-1; i >= 0; --i)
     P.push_back(state_init[f1[i]]);
   }
   P.push_back(q_goal);
-  ROS_INFO("The path contains %d states.",(int)P.size())
+  ROS_INFO("The path contains %d states.",(int)P.size());
 return P;
 }
 
