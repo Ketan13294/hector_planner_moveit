@@ -143,7 +143,6 @@ bool RMLContext::is_local_path_collision_free( const RMLContext::vertex& q,
       if(is_colliding(q_int))
       {
         return false;
-        break;
       }
     }
   return true;
